@@ -15,7 +15,7 @@ A simple dashboard to monitor issues on the [node.js](https://github.com/joyent/
 ## TODO
 
 [X] Make the fetch issues as an individual module that pipes out a stream and publish to NPM
-[ ] Migrate from model to Dulcimer
+[X] Migrate from model to Dulcimer
 [ ] Make everything work again
 [ ] Write Tests
 [ ] Make Routes to receive Github Hooks with ngrok
