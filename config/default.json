@@ -1,0 +1,22 @@
+{
+  "host": "127.0.0.1",
+  "port": 9000,
+  "session": {
+    "ndsecret": "triagehapialltheghings"
+  },
+  "bunyan": {
+    "name": "triage"
+  },
+  "db": "/tmp/.triage-db/",
+  "hapiOptions":{ 
+    "cache": {
+      "engine": "catbox-memory"
+    },
+    "cors": true,
+    "state": {
+      "cookies": {
+        "strictHeader": false
+      }
+    }
+  }
+}
