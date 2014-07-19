@@ -18,7 +18,7 @@ module.exports = function () {
   issueStream.on('_data', function (issue) {
     // store the issue
   });
-}
+};
 
 
 
