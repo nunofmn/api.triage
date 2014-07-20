@@ -60,4 +60,3 @@ module.exports = function (server) {
 //     handler: noOneAssigned}
 // );
 
-};
