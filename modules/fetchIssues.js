@@ -1,7 +1,7 @@
-var Issue       = require('model').getModelByName('Issue');
-var secret      = require('./../config/secret.json').secret;
-var gi          = require('github-issues');
-var logger      = require('./logger.js');
+var Issue   = require('./../store/models/Issue.js');
+var secret  = require('./../config/secret.json').secret;
+var gi      = require('github-issues');
+var logger  = require('./logger.js');
 
 var config = {
   'repo'       : 'joyent/node',
@@ -17,7 +17,9 @@ module.exports = function () {
 
   issueStream.on('_data', function (issue) {
     Issue.getByIndex('number', issue.number, function (err, issues) {
-      if (err){ return logger.error(err.detail);}
+      if (err) { 
+        return logger.error('Error: ' + err);
+      } 
 
       // error
       if (issues.length > 1) {
@@ -27,13 +29,14 @@ module.exports = function () {
 
       // update
       if (issues.length === 1) {
+        
 
       }
 
       // create
       if (issues.length === 0) {
         Issue.create(issue).save(function (err) {
-          if (err) { logger.error(err.detail); }
+          if (err) { logger.error('Error: ' + err); }
         });
       }
     });

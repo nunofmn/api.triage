@@ -9,9 +9,6 @@
   },
   "db": "/tmp/.triage-db/",
   "hapiOptions":{ 
-    "cache": {
-      "engine": "catbox-memory"
-    },
     "cors": true,
     "state": {
       "cookies": {

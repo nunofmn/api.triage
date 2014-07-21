@@ -1,5 +1,5 @@
-var store   = require('./../../store');
-var User    = store.models.User;
+var Issue   = require('./../../store/models/issue.js');
+// var User    = store.models.Issue; CHANGE THIS
 var config  = require('config');
 var Hapi    = require('hapi');
 
