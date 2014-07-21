@@ -3,8 +3,8 @@ var resources  = require('./resources.js');
 module.exports = function (server) {
     
   server.route({ 
-    method: 'GET',
+    method: 'POST',
     path: '/github-webhook',
-    handler: resources.SOMETHING
+    handler: resources.receive
   });
 };

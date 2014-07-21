@@ -5,7 +5,7 @@ var Hapi    = require('hapi');
 
 
 
-exports.getIssues = function (request, reply) {
+exports.receive = function (request, reply) {
 
 
 
@@ -14,116 +14,32 @@ exports.getIssues = function (request, reply) {
 
 
 
-// /**
-//  *	Get a list of users
-//  */
-// exports.getBatch = function (request, reply) {
-// 	logger.log('headers \n', request.headers);
+// X-Github-Event
+// Name                        Description
+// *                           Any time any event is triggered (Wildcard Event).
+// commit_comment              Any time a Commit is commented on.
+// create                      Any time a Branch or Tag is created.
+// delete                      Any time a Branch or Tag is deleted.
+// deployment                  Any time a Repository has a new deployment created from the API.
+// deployment_status           Any time a deployment for the Repository has a status update from the API.
+// fork                        Any time a Repository is forked.
+// gollum                      Any time a Wiki page is updated.
+// issue_comment               Any time an Issue is commented on.
+// issues                      Any time an Issue is opened or closed.
+// member                      Any time a User is added as a collaborator to a non-Organization Repository.
+// page_build                  Any time a Pages site is built or results in a failed build.
+// public                      Any time a Repository changes from private to public.
+// pull_request_review_comment Any time a Commit is commented on while inside a Pull Request review (the Files Changed tab).
+// pull_request                Any time a Pull Request is opened, closed, or synchronized (updated due to a new push in the branch that the pull request is tracking).
+// push                        Any git push to a Repository. This is the default event.
+// release                     Any time a Release is published in the Repository.
+// status                      Any time a Repository has a status update from the API
+// team_add                    Any time a team is added or modified on a Repository.
+// watch                       Any time a User watches the Repository.
 
+// X-Hub-Signature
+// to check if the POST is valid
 
-// 	if (!request.auth.credentials.user.admin) {
-// 		return reply(Hapi.error.unauthorized('go away'));
-// 	}
-
-// 	User.all(function (err, users) {
-// 		if (err) {
-// 			return reply(Hapi.error.internal('User lookup failed', err));
-// 		}
-// 		reply(users);
-// 	});
-// };
-
-// /**
-//  *	Get one user
-//  */
-// exports.get = function (request, reply) {
-// 	User.get(request.params.user_id, function (err, user) {
-// 		if (err) {
-// 			return reply(Hapi.error.internal('User lookup failed', err));
-// 		}
-
-// 		if (request.auth.credentials.user.admin || user.username === request.auth.credentials.user.username) {
-// 			reply(user);
-// 		} else {
-// 			reply(Hapi.error.unauthorized('go away'));
-// 		}
-// 	});
-// };
-
-// /**
-//  *	Create a user
-//  */
-// exports.create = function (request, reply) {
-
-// 	if (!request.auth.credentials.user.admin) {
-// 		return reply(Hapi.error.unauthorized('go away'));
-// 	}
-
-// 	logger.log(request.payload);
-
-// 	var u = User.create(request.payload);
-// 	// ser the password as an salted hash, using the onSet function
-// 	u.password = request.payload.password;
-
-// 	u.save(function (err) {
-// 		if (err) {
-// 			logger.error('User creation failed ' + err);
-// 			return reply(Hapi.error.internal(err));
-// 		}
-// 		reply({_id: u.id}).code(201);
-// 	});
-// };
-
-
-// /**
-//  *	Update a user
-//  */
-// exports.update = function (request, reply) {
-
-// 	// User.findOne({_id: request.params.user_id}).select('-password').exec(function (err, user) {
-// 	User.get(request.params.user_id, function (err, user) {
-// 		if (err) {
-// 			return reply(Hapi.error.notFound(Error('User not found')));
-// 		}
-
-// 		if (request.auth.credentials.user.admin || user.username === request.auth.credentials.user.username) {
-// 			Object.keys(request.payload).forEach(function (key) {
-// 				logger.log(request.payload);
-// 				user[key] = request.payload[key];
-// 			});
-// 			user.save(function (err) {
-// 				if (err) {
-// 					logger.error(err);
-// 				}
-// 				reply(user);
-// 			});
-// 		} else {
-// 			reply(Hapi.error.unauthorized('go away'));
-// 		}
-// 	});
-
-// };
-
-// /**
-//  *	Remove a user
-//  */
-// exports.remove = function (request, reply) {
-
-// 	// Only admin can delete
-// 	if (!request.auth.credentials.user.admin) {
-// 		return reply(Hapi.error.unauthorized('go away'));
-// 	}
-
-// 	User.get(request.params.user_id, function (err, user) {
-// 		if (err) {
-// 			return reply(Hapi.error.internal('User delete failed', err));
-// 		}
-
-// 		user.delete(function (err) {
-// 			if (err) {
-// 				return reply(Hapi.error.internal('User delete failed', err));
-// 			}
-// 			reply();
-// 		});
-// 	});
-// };
+// Resources
+// https://developer.github.com/webhooks/
+// https://developer.github.com/v3/repos/hooks/#create-a-hook
