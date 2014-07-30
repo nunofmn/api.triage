@@ -6,10 +6,10 @@ var logger      = require('./modules/logger.js');
 var fetchIssues = require('./modules/fetchIssues.js');
 var async       = require('async');
 
-fetchIssues();
 
 var triagePlugins = [
-    require('./plugins/issues')
+    require('./plugins/issues'),
+    require('./plugins/github-webhook')
 ];
 
 var port    = parseInt(process.env.PORT) || config.port;
@@ -22,13 +22,17 @@ async.each(triagePlugins, registerPlugin, function (err) {
   }
   server.start(function () {
     logger.info('Server started at: ' + server.info.uri);
+    // fetchIssues();
+    require('./modules/parseGithubEvents.js');
+
+
   });
 });
 
 function registerPlugin(plug, cb) {
   server.pack.register(plug, {}, function (err) {
     if (err) {
-      logger.error('Failed loading a nsp_plugin: ' + plug.name);
+      logger.error('Failed loading a triage_plugin: ' + plug.name);
       process.exit(1);
     }
     cb();

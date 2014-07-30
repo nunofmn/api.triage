@@ -1,5 +1,5 @@
 var dulcimer    = require('dulcimer');
-var verymodel   = require('verymodel');
+// var verymodel   = require('verymodel');
 
 // var type = verymodel.VeryType;
 
