@@ -29,7 +29,7 @@ module.exports = function () {
 
       // update
       if (issues.length === 1) {
-        
+        logger.info('Issue: ' + issue.number + ' is being updated');
 
       }
 

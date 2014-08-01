@@ -13,6 +13,7 @@
   "freeze"        : true,
   "indent"        : 2,
   "maxdepth"      : 3,
+  "sub"           : false,
   "globals"       : {
                       "console": true,
                       "require": true,

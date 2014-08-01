@@ -7,9 +7,9 @@ var fetchIssues = require('./modules/fetchIssues.js');
 var async       = require('async');
 
 
-var triagePlugins = [
-    require('./plugins/issues'),
-    require('./plugins/github-webhook')
+var triagePlugins = [ 
+  {plugin: require('./plugins/issues'), options: {} },
+  {plugin: require('./plugins/github-webhook'), options: {} }
 ];
 
 var port    = parseInt(process.env.PORT) || config.port;
@@ -22,15 +22,13 @@ async.each(triagePlugins, registerPlugin, function (err) {
   }
   server.start(function () {
     logger.info('Server started at: ' + server.info.uri);
-    // fetchIssues();
-    require('./modules/parseGithubEvents.js');
-
+    fetchIssues();
 
   });
 });
 
 function registerPlugin(plug, cb) {
-  server.pack.register(plug, {}, function (err) {
+  server.pack.register(plug.plugin, plug.options, function (err) {
     if (err) {
       logger.error('Failed loading a triage_plugin: ' + plug.name);
       process.exit(1);

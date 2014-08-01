@@ -19,5 +19,5 @@ A simple dashboard to monitor issues on the [node.js](https://github.com/joyent/
 - [X] Migrate from model to Dulcimer
 - [ ] Make everything work again
 - [ ] Write Tests
-- [ ] Make Routes to receive Github Hooks with ngrok
+- [X] Make Routes to receive Github Hooks and test with ngrok
 - [ ] Create a WebSockets API 
