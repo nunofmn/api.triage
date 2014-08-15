@@ -15,7 +15,7 @@
     "async": "^0.9.0",
     "bunyan": "^0.23.1",
     "config": "^0.4.36",
-    "dulcimer": "^2.1.1",
+    "dulcimer": "^2.2.1",
     "github-issues": "^1.0.0",
     "hapi": "^6.2.0",
     "joi": "^4.6.1",

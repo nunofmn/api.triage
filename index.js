@@ -23,7 +23,6 @@ async.each(triagePlugins, registerPlugin, function (err) {
   server.start(function () {
     logger.info('Server started at: ' + server.info.uri);
     fetchIssues();
-
   });
 });
 

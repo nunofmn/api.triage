@@ -21,22 +21,51 @@ module.exports = function () {
         return logger.error('Error: ' + err);
       } 
 
-      // error
+      // error -> refresh
       if (issues.length > 1) {
-        logger.error('There are more than one issue with the same number in the DB');
+        logger.error('There are more than one issue with the same number(' + issue.number + ') in the DB, refreshing');
+                
+        issues.map(function(issue){
+          Issue.delete(issue.key, {}, function(err){
+            if (err) {
+              logger.error('Error: ' + err);
+            }  
+          });
+        });
+
+        Issue.create(issue).save(function (err) {
+          if (err) { 
+            logger.error('Error: ' + err);
+          } else {
+            logger.info('Issue: ' + issue.number + ' was refreshed');
+          }
+          return;
+        });        
         return;
       }
 
       // update
       if (issues.length === 1) {
         logger.info('Issue: ' + issue.number + ' is being updated');
-
+        Issue.update(issues[0].key, issue, {}, function (){
+          if (err) { 
+            logger.error('Error: ' + err);
+          } else {
+            logger.info('Issue: ' + issue.number + ' was updated');
+          }
+        });
+        return;
       }
 
       // create
       if (issues.length === 0) {
         Issue.create(issue).save(function (err) {
-          if (err) { logger.error('Error: ' + err); }
+          if (err) { 
+            logger.error('Error: ' + err);
+          } else {
+            logger.info('Issue: ' + issue.number + ' was saved');
+          }
+          return;
         });
       }
     });

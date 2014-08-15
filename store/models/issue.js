@@ -1,7 +1,4 @@
 var dulcimer    = require('dulcimer');
-// var verymodel   = require('verymodel');
-
-// var type = verymodel.VeryType;
 
 var Issue = module.exports = new dulcimer.Model(
 {
@@ -13,7 +10,6 @@ var Issue = module.exports = new dulcimer.Model(
   },
   number: { 
     type: 'string',
-    // unique: true,
     index: true
 
   }, // issue ID number
