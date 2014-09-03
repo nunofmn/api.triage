@@ -51,7 +51,7 @@ exports.register = function (plugin, options, next) {
 
 
     eventEmitter.emit(event, {
-      event   : event,
+      type    : event,
       id      : id,
       payload : payload
     });

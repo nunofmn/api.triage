@@ -26,3 +26,4 @@ This is the api
 - [X] Make Routes to receive Github Hooks and test with ngrok
 - [ ] Make that the hook updates effectively the issue
 - [ ] Create a WebSockets API 
+- [ ] Create a route for star count

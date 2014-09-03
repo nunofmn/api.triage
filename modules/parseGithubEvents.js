@@ -1,89 +1,135 @@
 exports = module.exports;
 
-exports['*'] = function (event) {
-
-};
+// event : {
+//   type    : type,    // type of the event
+//   id      : id,      // id of the event
+//   payload : payload  // payload received
+// }
+  
 
 exports.commit_comment = function (event) {
-
+  // Triggered when a commit comment is created.
+  // update the "updated_at" of the issue and the number of comments
 };
 
-exports.create = function (event) {
-
-};
-
-exports.delete = function (event) {
-
-};
-
-exports.deployment = function (event) {
-
-};
-
-exports.deployment_status = function (event) {
-
-};
-
-exports.fork = function (event) {
-
-};
-
-exports.gollum = function (event) {
-
-};
 
 exports.issue_comment = function (event) {
-
+  // Triggered when an issue comment is created.
+  // update the "updated_at" of the issue and the number of comments
 };
 
 exports.issues = function (event) {
-
+  // Triggered when an issue is assigned, unassigned, labeled, unlabeled, opened, closed, or reopened.
+  // https://developer.github.com/v3/activity/events/types/#issuesevent
 };
 
-exports.member = function (event) {
-
-};
-
-exports.page_build = function (event) {
-
-};
-
-exports.public = function (event) {
-
-};
 
 exports.pull_request_review_comment = function (event) {
-
+  // Triggered when a pull request is assigned, unassigned, labeled, unlabeled, opened, closed, reopened, or synchronized.
 };
 
-exports.pull_request = function (event) {
 
-};
 
-exports.push = function (event) {
 
-};
 
-exports.release = function (event) {
 
-};
 
-exports.status = function (event) {
 
-};
 
-exports.team_add = function (event) {
 
-};
 
-exports.watch = function (event) {
 
-};
+
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+//      not needed, just to have the place holder
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 exports.ping = function (event) {
   // used to test the hook
   console.log('PING: ', event);
 };
+
+// exports['*'] = function (event) {
+//   //~ do nothing
+// };
+
+
+// exports.create = function (event) {
+//   // Represents a created repository, branch, or tag.
+//   // ~ do nothing
+// };
+
+// exports.delete = function (event) {
+//   // Represents a deleted branch or tag.
+//   //~ do nothing
+// };
+
+// exports.deployment = function (event) {
+//   // Represents a deployment.
+//   //~ do nothing
+// };
+
+// exports.deployment_status = function (event) {
+//   // Represents a deployment.
+//   //~ do nothing
+// };
+
+// exports.fork = function (event) {
+//   // Triggered when a user forks a repository.
+//   //~ do nothing
+// };
+
+// exports.gollum = function (event) {
+//   // Triggered when a Wiki page is created or updated.
+//   //~ do nothing
+// };
+
+// exports.member = function (event) {
+//   // Triggered when a user is added as a collaborator to a repository.
+//   //~ do nothing
+// };
+
+// exports.page_build = function (event) {
+//   // Represents an attempted build of a GitHub Pages site, whether successful or not.
+//   //~ do nothing
+// };
+
+// exports.public = function (event) {
+//   // Triggered when a private repository is open sourced. Without a doubt: the best GitHub event.
+//   //~ do nothing
+// };
+
+// exports.pull_request = function (event) {
+//   // Triggered when a comment is created on a portion of the unified diff of a pull request.
+//   //~ do nothing
+// };
+
+// exports.push = function (event) {
+//   // Triggered when a repository branch is pushed to.
+//   //~ do nothing
+// };
+
+// exports.release = function (event) {
+//   // Triggered when a release is published.
+//   //~ do nothing
+// };
+
+// exports.status = function (event) {
+//   // Triggered when the status of a Git commit changes.
+//   //~ do nothing
+
+// };
+
+// exports.team_add = function (event) {
+//   // Triggered when a user is added to a team or when a repository is added to a team.
+//   //~ do nothing
+// };
+
+// exports.watch = function (event) {
+//   // The WatchEvent is related to starring a repository, not watching. See this API blog post for an explanation.
+//   //~ do nothing
+// };
 
 
 // X-Github-Event
