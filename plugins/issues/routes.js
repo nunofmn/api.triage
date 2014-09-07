@@ -13,5 +13,17 @@ module.exports = function (server) {
       //   }
       }
   });
+
+  server.route({ 
+    method: 'GET',
+    path: '/issues/{id}',
+    handler: resources.getIssueById,
+    config: {
+      // validate: {
+      //   payload: {
+      //     thing: Hapi.types.String()
+      //   }
+      }
+  });
 };
 

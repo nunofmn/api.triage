@@ -14,3 +14,9 @@ exports.getIssues = function (request, reply) {
   // https://github.com/fritzy/dulcimer#all look at pagination feature
   // returnStream will be awesome for the websockets API  
 };
+
+exports.getIssueById = function (request, reply) {
+  Issue.getByIndex('number', request.params.id, function(err, model) {
+    reply(model);
+  });
+};
