@@ -16,7 +16,7 @@ module.exports = function (server) {
 
   server.route({ 
     method: 'GET',
-    path: '/issues/{id}',
+    path: '/issues/{number}',
     handler: resources.getIssueById,
     config: {
       // validate: {
