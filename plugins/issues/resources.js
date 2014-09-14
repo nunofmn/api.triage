@@ -8,6 +8,7 @@ exports.getIssues = function (request, reply) {
 
   var page = parseInt(request.query.page) || 1;
   var paginationfn = [];
+  console.log(request.info.host);
 
   // Function to get first page of issues
   var getFirstIssues = function(callback) {
@@ -15,20 +16,44 @@ exports.getIssues = function (request, reply) {
       if(err) {
         callback(err, null);
       }else {
-        callback(null, pagination.continuation, models)
+        callback(null, pagination, models);
       }
     });
   };
 
   // Function to get n page of issues
   var getIssuesPagination = function(pagetoken, models, callback) {
-    Issue.all({sortBy: 'number', limit: 10, continuation: pagetoken}, function(err, models, pagination) {
+    Issue.all({sortBy: 'number', limit: 10, continuation: pagetoken.continuation}, function(err, models, pagination) {
+        console.log(pagination);
       if(err) {
         callback(err, null);
       }else {
-        callback(null, pagination.continuation, models)
+        callback(null, pagination, models);
       }
     });
+  };
+
+  var generateLinkHeader = function(req, pagination) {
+      var linkField = [];
+      var totalPages = Math.ceil(parseInt(pagination.total)/10);
+      var pageNumber = parseInt(req.query.page);
+
+      // Next page link
+      if(pageNumber < totalPages)
+          linkField.push('<http://' + req.info.host + '/issues?page=' + (pageNumber+1) + '>; rel="next"');
+
+      // Previous page link
+      if(pageNumber != 1)
+          linkField.push('<http://' + req.info.host + '/issues?page=' + (pageNumber-1) + '>; rel="previous"');
+
+      // First page link
+      linkField.push('<http://' + req.info.host + '/issues?page=1; rel="first"');
+
+      // Last page link
+      linkField.push('<http://' + req.info.host + '/issues?page=' + totalPages + '>; rel="last"');
+
+
+      return linkField.join(', ');
   };
 
   // Necessary to always go through first page of issues
@@ -40,9 +65,9 @@ exports.getIssues = function (request, reply) {
   }
 
   // Serial execution of functions
-  async.waterfall(paginationfn, function(err, pagetoken, models) {
-    reply(models);
-  })
+  async.waterfall(paginationfn, function(err, pagination, models) {
+    reply(models).header("Link", generateLinkHeader(request, pagination));
+  });
 
 
   // TODO paginate the issues as github does (in the header);
