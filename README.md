@@ -1,5 +1,6 @@
 api.triage
 ================
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/nunofmn/api.triage?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## tl;dr;
 Triage is a simple dashboard to monitor issues on the [node.js](https://github.com/joyent/node), assuring that everyone gets the deserved attention. Currently hosted at {to be hosted}
